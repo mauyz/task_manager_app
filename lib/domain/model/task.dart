@@ -19,4 +19,17 @@ class Task {
     if (identical(this, other)) return true;
     return other is Task && other.id == id;
   }
+
+  Task copyWith({
+    String? title,
+    String? description,
+    bool? isCompleted,
+  }) {
+    return Task(
+      id: id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
 }
