@@ -1,6 +1,6 @@
 import 'package:task_manager_app/data/entity/task_entity.dart';
 
-abstract class TaskDatabase {
+abstract class TaskDatasource {
   Future<TaskListEntity> getAllTasks();
   Future<TaskEntity> insertTask(final TaskEntity taskEntity);
   Future<void> updateTask(final TaskEntity taskEntity);
