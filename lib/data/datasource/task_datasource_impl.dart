@@ -1,10 +1,10 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task_manager_app/core/constant/db_constants.dart';
-import 'package:task_manager_app/data/datasource/task_database.dart';
+import 'package:task_manager_app/data/datasource/task_datasource.dart';
 import 'package:task_manager_app/data/entity/task_entity.dart';
 
-class TaskDatabaseImpl implements TaskDatabase {
+class TaskDatasourceImpl implements TaskDatasource {
   Database? _database;
 
   Future<Database> _initDatabase() async {
