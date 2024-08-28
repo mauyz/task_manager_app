@@ -1,16 +1,16 @@
-import 'package:task_manager_app/data/datasource/task_database.dart';
+import 'package:task_manager_app/data/datasource/task_datasource.dart';
 import 'package:task_manager_app/data/mapper/task_mapper.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/domain/repository/task_repository.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
-  final TaskDatabase taskDatabase;
+  final TaskDatasource taskDatasource;
 
-  TaskRepositoryImpl(this.taskDatabase);
+  TaskRepositoryImpl(this.taskDatasource);
 
   @override
   Future<List<Task>> getTaskList() async {
-    final entityList = await taskDatabase.getAllTasks();
+    final entityList = await taskDatasource.getAllTasks();
     return entityList
         .map(
           (e) => TaskMapper.entityToModel(e),
@@ -20,7 +20,7 @@ class TaskRepositoryImpl implements TaskRepository {
 
   @override
   Future<Task> addTask(Task task) async {
-    final entity = await taskDatabase.insertTask(
+    final entity = await taskDatasource.insertTask(
       TaskMapper.modelToNewEntity(task),
     );
     return TaskMapper.entityToModel(entity);
@@ -28,11 +28,11 @@ class TaskRepositoryImpl implements TaskRepository {
 
   @override
   Future<void> updateTask(Task task) async {
-    await taskDatabase.updateTask(TaskMapper.modelToEntity(task));
+    await taskDatasource.updateTask(TaskMapper.modelToEntity(task));
   }
 
   @override
   Future<void> deleteTask(int taskId) async {
-    await taskDatabase.deleteTask(taskId);
+    await taskDatasource.deleteTask(taskId);
   }
 }
