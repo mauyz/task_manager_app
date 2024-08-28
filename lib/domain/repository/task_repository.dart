@@ -1,4 +1,4 @@
-import 'package:task_manager_app/domain/entities/task.dart';
+import 'package:task_manager_app/domain/model//task.dart';
 
 abstract class  TaskRepository {
   Future<List<Task>> getTaskList();
