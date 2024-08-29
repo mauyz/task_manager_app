@@ -33,8 +33,9 @@ class TaskListItem extends ConsumerWidget {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: IconButton(
+                  padding: const EdgeInsets.all(12.0),
                   icon: Icon(
                     task.isCompleted
                         ? Icons.check_box_rounded
@@ -65,11 +66,14 @@ class TaskListItem extends ConsumerWidget {
                   ],
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  confirmDeletionDialog(context, ref);
-                },
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    confirmDeletionDialog(context, ref);
+                  },
+                ),
               ),
             ],
           ),
