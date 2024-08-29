@@ -20,10 +20,9 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 TaskFilterLayout(),
-                Divider(height: 2, color: Colors.grey),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.only(bottom: 10.0),
                     child: TaskListLayout(),
                   ),
                 ),
