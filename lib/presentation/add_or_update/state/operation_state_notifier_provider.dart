@@ -40,24 +40,18 @@ class OperationStateNotifier extends _$OperationStateNotifier {
     );
   }
 
-  Future submitForm() async {
+  Future submitData() async {
     state = state.copyWith(status: OperationStatus.submitting);
     try {
+      final data = Task(
+        id: task == null ? 0 : task!.id,
+        title: state.title,
+        description: state.description,
+        isCompleted: state.isCompleted,
+      );
       if (task == null) {
-        final data = Task(
-          id: 0,
-          title: state.title,
-          description: state.description,
-          isCompleted: state.isCompleted,
-        );
         await ref.read(taskListStateProvider.notifier).addTask(data);
       } else {
-        final data = Task(
-          id: task!.id,
-          title: state.title,
-          description: state.description,
-          isCompleted: state.isCompleted,
-        );
         await ref.read(taskListStateProvider.notifier).updateTask(data);
       }
       state = state.copyWith(status: OperationStatus.success);
