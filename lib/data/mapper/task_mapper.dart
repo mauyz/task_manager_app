@@ -7,7 +7,7 @@ class TaskMapper {
       id: map["id"],
       title: map["title"],
       description: map["description"],
-      isCompleted: map["isCompleted"] == 1,
+      isCompleted: map["is_completed"] == 1,
     );
   }
 
