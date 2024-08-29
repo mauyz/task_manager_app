@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'form_state_notifier_provider.dart';
+part of 'operation_state_notifier_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$formStateNotifierHash() => r'3b439c5643d6054789d48a14c57dd41307b68f9f';
+String _$operationStateNotifierHash() =>
+    r'efe057c0573ef5d19d9cd35eb25dd73f959d219d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,36 +30,36 @@ class _SystemHash {
   }
 }
 
-abstract class _$FormStateNotifier
-    extends BuildlessAutoDisposeNotifier<FormState> {
+abstract class _$OperationStateNotifier
+    extends BuildlessAutoDisposeNotifier<OperationState> {
   late final Task? task;
 
-  FormState build(
+  OperationState build(
     Task? task,
   );
 }
 
-/// See also [FormStateNotifier].
-@ProviderFor(FormStateNotifier)
-const formStateNotifierProvider = FormStateNotifierFamily();
+/// See also [OperationStateNotifier].
+@ProviderFor(OperationStateNotifier)
+const operationStateNotifierProvider = OperationStateNotifierFamily();
 
-/// See also [FormStateNotifier].
-class FormStateNotifierFamily extends Family<FormState> {
-  /// See also [FormStateNotifier].
-  const FormStateNotifierFamily();
+/// See also [OperationStateNotifier].
+class OperationStateNotifierFamily extends Family<OperationState> {
+  /// See also [OperationStateNotifier].
+  const OperationStateNotifierFamily();
 
-  /// See also [FormStateNotifier].
-  FormStateNotifierProvider call(
+  /// See also [OperationStateNotifier].
+  OperationStateNotifierProvider call(
     Task? task,
   ) {
-    return FormStateNotifierProvider(
+    return OperationStateNotifierProvider(
       task,
     );
   }
 
   @override
-  FormStateNotifierProvider getProviderOverride(
-    covariant FormStateNotifierProvider provider,
+  OperationStateNotifierProvider getProviderOverride(
+    covariant OperationStateNotifierProvider provider,
   ) {
     return call(
       provider.task,
@@ -77,30 +78,30 @@ class FormStateNotifierFamily extends Family<FormState> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'formStateNotifierProvider';
+  String? get name => r'operationStateNotifierProvider';
 }
 
-/// See also [FormStateNotifier].
-class FormStateNotifierProvider
-    extends AutoDisposeNotifierProviderImpl<FormStateNotifier, FormState> {
-  /// See also [FormStateNotifier].
-  FormStateNotifierProvider(
+/// See also [OperationStateNotifier].
+class OperationStateNotifierProvider extends AutoDisposeNotifierProviderImpl<
+    OperationStateNotifier, OperationState> {
+  /// See also [OperationStateNotifier].
+  OperationStateNotifierProvider(
     Task? task,
   ) : this._internal(
-          () => FormStateNotifier()..task = task,
-          from: formStateNotifierProvider,
-          name: r'formStateNotifierProvider',
+          () => OperationStateNotifier()..task = task,
+          from: operationStateNotifierProvider,
+          name: r'operationStateNotifierProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$formStateNotifierHash,
-          dependencies: FormStateNotifierFamily._dependencies,
+                  : _$operationStateNotifierHash,
+          dependencies: OperationStateNotifierFamily._dependencies,
           allTransitiveDependencies:
-              FormStateNotifierFamily._allTransitiveDependencies,
+              OperationStateNotifierFamily._allTransitiveDependencies,
           task: task,
         );
 
-  FormStateNotifierProvider._internal(
+  OperationStateNotifierProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -113,8 +114,8 @@ class FormStateNotifierProvider
   final Task? task;
 
   @override
-  FormState runNotifierBuild(
-    covariant FormStateNotifier notifier,
+  OperationState runNotifierBuild(
+    covariant OperationStateNotifier notifier,
   ) {
     return notifier.build(
       task,
@@ -122,10 +123,10 @@ class FormStateNotifierProvider
   }
 
   @override
-  Override overrideWith(FormStateNotifier Function() create) {
+  Override overrideWith(OperationStateNotifier Function() create) {
     return ProviderOverride(
       origin: this,
-      override: FormStateNotifierProvider._internal(
+      override: OperationStateNotifierProvider._internal(
         () => create()..task = task,
         from: from,
         name: null,
@@ -138,14 +139,14 @@ class FormStateNotifierProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<FormStateNotifier, FormState>
+  AutoDisposeNotifierProviderElement<OperationStateNotifier, OperationState>
       createElement() {
-    return _FormStateNotifierProviderElement(this);
+    return _OperationStateNotifierProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FormStateNotifierProvider && other.task == task;
+    return other is OperationStateNotifierProvider && other.task == task;
   }
 
   @override
@@ -157,18 +158,19 @@ class FormStateNotifierProvider
   }
 }
 
-mixin FormStateNotifierRef on AutoDisposeNotifierProviderRef<FormState> {
+mixin OperationStateNotifierRef
+    on AutoDisposeNotifierProviderRef<OperationState> {
   /// The parameter `task` of this provider.
   Task? get task;
 }
 
-class _FormStateNotifierProviderElement
-    extends AutoDisposeNotifierProviderElement<FormStateNotifier, FormState>
-    with FormStateNotifierRef {
-  _FormStateNotifierProviderElement(super.provider);
+class _OperationStateNotifierProviderElement
+    extends AutoDisposeNotifierProviderElement<OperationStateNotifier,
+        OperationState> with OperationStateNotifierRef {
+  _OperationStateNotifierProviderElement(super.provider);
 
   @override
-  Task? get task => (origin as FormStateNotifierProvider).task;
+  Task? get task => (origin as OperationStateNotifierProvider).task;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

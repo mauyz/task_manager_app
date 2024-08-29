@@ -1,3 +1,3 @@
-enum FormStatus {
+enum OperationStatus {
   initial, submitting, success, failure,
 }

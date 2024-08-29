@@ -1,24 +1,24 @@
-import 'package:task_manager_app/core/enum/form_status.dart';
+import 'package:task_manager_app/core/enum/operation_status.dart';
 
-class FormState {
+class OperationState {
   final String title;
   final String description;
   final bool isCompleted;
-  final FormStatus status;
-  FormState({
+  final OperationStatus status;
+  OperationState({
     this.title = '',
     this.description = '',
     this.isCompleted = false,
-    this.status = FormStatus.initial,
+    this.status = OperationStatus.initial,
   });
 
-  FormState copyWith({
+  OperationState copyWith({
     String? title,
     String? description,
     bool? isCompleted,
-    FormStatus? status,
+    OperationStatus? status,
   }) {
-    return FormState(
+    return OperationState(
       title: title ?? this.title,
       description: description ?? this.description,
       isCompleted: isCompleted ?? this.isCompleted,
@@ -27,6 +27,6 @@ class FormState {
   }
 
   bool get isValid => title.isNotEmpty && description.isNotEmpty;
-  bool get isSubmitting => status == FormStatus.submitting;
-  bool get hasFailed => status == FormStatus.failure;
+  bool get isSubmitting => status == OperationStatus.submitting;
+  bool get hasFailed => status == OperationStatus.failure;
 }
