@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager_app/core/util/display_snack_bar.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
 import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
@@ -98,8 +99,23 @@ class TaskListItem extends ConsumerWidget {
           actions: [
             TextButton(
               onPressed: () {
-                ref.read(taskListStateProvider.notifier).deleteTask(task.id);
-                Navigator.of(context).pop();
+                ref
+                    .read(taskListStateProvider.notifier)
+                    .deleteTask(task.id)
+                    .then(
+                  (_) {
+                    if (context.mounted) {
+                      displaySnackBar(context, "Tâche supprimée");
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  onError: (_) {
+                    if (context.mounted) {
+                      displaySnackBar(context, "Une erreur s'est produite");
+                      Navigator.of(context).pop();
+                    }
+                  },
+                );
               },
               child: const Text("Oui"),
             ),
