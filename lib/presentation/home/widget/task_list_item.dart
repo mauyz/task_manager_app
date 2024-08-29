@@ -90,10 +90,10 @@ class TaskListItem extends ConsumerWidget {
         return AlertDialog(
           alignment: Alignment.center,
           actionsAlignment: MainAxisAlignment.center,
-          content: const Padding(
-            padding: EdgeInsets.all(8.0),
+          content: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: ErrorTextWidget(
-              text: "Voulez-vous supprimer cette tâche ?",
+              text: "Voulez-vous supprimer la tâche '${task.title}' ?",
             ),
           ),
           actions: [
