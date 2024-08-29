@@ -16,7 +16,7 @@ class TaskMapper {
       'id': model.id,
       'title': model.title,
       'description': model.description,
-      'isCompleted': model.isCompleted ? 1 : 0,
+      'is_completed': model.isCompleted ? 1 : 0,
     };
   }
 
@@ -25,7 +25,7 @@ class TaskMapper {
       'id': null,
       'title': model.title,
       'description': model.description,
-      'isCompleted': model.isCompleted ? 1 : 0,
+      'is_completed': model.isCompleted ? 1 : 0,
     };
   }
 }
