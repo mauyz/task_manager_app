@@ -28,10 +28,15 @@ class TaskListFilteredWidget extends ConsumerWidget {
           )
           .toList(),
     };
+    final filterText = switch (filter) {
+      FilterEnum.all => "",
+      FilterEnum.completed => " complète",
+      FilterEnum.uncompleted => " incomplète",
+    };
     return filteredList.isEmpty
         ? Center(
             child: Text(
-              "Aucune tâche",
+              "Aucune tâche$filterText",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           )
