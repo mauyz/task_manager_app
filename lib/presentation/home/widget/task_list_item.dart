@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/presentation/util/display_snack_bar.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
-import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
+import 'package:task_manager_app/presentation/home/state/task_list_state_notifier.dart';
 import 'package:task_manager_app/presentation/home/widget/error_text_widget.dart';
 
 class TaskListItem extends ConsumerWidget {
@@ -46,7 +46,7 @@ class TaskListItem extends ConsumerWidget {
                     final newValue =
                         task.copyWith(isCompleted: !task.isCompleted);
                     ref
-                        .read(taskListStateProvider.notifier)
+                        .read(taskListStateNotifierProvider.notifier)
                         .updateTask(newValue);
                   },
                 ),
@@ -100,7 +100,7 @@ class TaskListItem extends ConsumerWidget {
             TextButton(
               onPressed: () {
                 ref
-                    .read(taskListStateProvider.notifier)
+                    .read(taskListStateNotifierProvider.notifier)
                     .deleteTask(task.id)
                     .then(
                   (_) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/core/enum/filter_enum.dart';
 import 'package:task_manager_app/domain/model/task.dart';
-import 'package:task_manager_app/presentation/home/state/task_filter_state.dart';
+import 'package:task_manager_app/presentation/home/state/filter_state_notifier.dart';
 import 'package:task_manager_app/presentation/home/widget/task_list_item.dart';
 
 class TaskListFilteredWidget extends ConsumerWidget {
@@ -14,7 +14,7 @@ class TaskListFilteredWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filter = ref.watch(taskFilterStateProvider);
+    final filter = ref.watch(filterStateNotifierProvider);
     final filteredList = switch (filter) {
       FilterEnum.all => data,
       FilterEnum.completed => data

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/core/enum/filter_enum.dart';
-import 'package:task_manager_app/presentation/home/state/task_filter_state.dart';
+import 'package:task_manager_app/presentation/home/state/filter_state_notifier.dart';
 
 class TaskFilterItem extends ConsumerWidget {
   final String title;
@@ -14,7 +14,7 @@ class TaskFilterItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filterActive = ref.watch(taskFilterStateProvider);
+    final filterActive = ref.watch(filterStateNotifierProvider);
     final selected = filter == filterActive;
     return Flexible(
       child: TextButton(
@@ -25,7 +25,7 @@ class TaskFilterItem extends ConsumerWidget {
             : null,
         onPressed: () {
           if (filterActive != filter) {
-            ref.read(taskFilterStateProvider.notifier).update(filter);
+            ref.read(filterStateNotifierProvider.notifier).update(filter);
           }
         },
         child: Text(title),
