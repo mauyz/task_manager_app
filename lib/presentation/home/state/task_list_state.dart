@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:task_manager_app/data/repository/task_repository_provider.dart';
@@ -11,10 +9,10 @@ part 'task_list_state.g.dart';
 class TaskListState extends _$TaskListState {
   @override
   Future<List<Task>> build() {
-    return initData();
+    return _loadData();
   }
 
-  Future<List<Task>> initData() async {
+  Future<List<Task>> _loadData() async {
     try {
       return ref.read(taskRepositoryProvider).getTaskList();
     } catch (e) {
@@ -23,40 +21,10 @@ class TaskListState extends _$TaskListState {
     }
   }
 
-  Future refreshData() async {
-    try {
-      state = const AsyncLoading();
-      final data = await ref.read(taskRepositoryProvider).getTaskList();
-      state = AsyncData(data);
-    } catch (e) {
-      debugPrint(e.toString());
-      rethrow;
-    }
-  }
-
   Future addTask(final Task task) async {
     try {
-      final result = await ref.read(taskRepositoryProvider).addTask(task);
-      final previousState = await future;
-      state = AsyncData([...previousState, result]);
-    } catch (e) {
-      debugPrint(e.toString());
-      rethrow;
-    }
-  }
-
-  Future testAddTask() async {
-    try {
-      final id = Random().nextInt(100);
-      final task = Task(
-        id: id,
-        title: "title $id",
-        description: "description",
-        isCompleted: id % 2 == 0,
-      );
-      //final result = await ref.read(taskRepositoryProvider).addTask(task);
-      final previousState = await future;
-      state = AsyncData([...previousState, task]);
+      await ref.read(taskRepositoryProvider).addTask(task);
+      state = AsyncData(await _loadData());
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -66,11 +34,7 @@ class TaskListState extends _$TaskListState {
   Future updateTask(final Task task) async {
     try {
       await ref.read(taskRepositoryProvider).updateTask(task);
-      final previousState = await future;
-      state = AsyncData([
-        for (final value in previousState)
-          if (value.id == task.id) task else value,
-      ]);
+      state = AsyncData(await _loadData());
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -80,12 +44,7 @@ class TaskListState extends _$TaskListState {
   Future deleteTask(final int taskId) async {
     try {
       await ref.read(taskRepositoryProvider).deleteTask(taskId);
-      final previousState = await future;
-      state = AsyncData(previousState
-          .where(
-            (element) => element.id != taskId,
-          )
-          .toList());
+      state = AsyncData(await _loadData());
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
