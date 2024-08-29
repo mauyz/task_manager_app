@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
 import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
+import 'package:task_manager_app/presentation/home/widget/error_text_widget.dart';
 
 class TaskListItem extends ConsumerWidget {
   final Task task;
@@ -67,13 +68,46 @@ class TaskListItem extends ConsumerWidget {
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  //TODO
+                  confirmDeletionDialog(context, ref);
                 },
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void confirmDeletionDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          alignment: Alignment.center,
+          actionsAlignment: MainAxisAlignment.center,
+          content: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: ErrorTextWidget(
+              text: "Voulez-vous supprimer cette tâche ?",
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                ref.read(taskListStateProvider.notifier).deleteTask(task.id);
+                Navigator.of(context).pop();
+              },
+              child: const Text("Oui"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Non"),
+            ),
+          ],
+        );
+      },
     );
   }
 }
