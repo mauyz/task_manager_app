@@ -26,7 +26,7 @@ class OperationState {
     );
   }
 
-  bool get isValid => title.isNotEmpty && description.isNotEmpty;
+  bool get isFormValid => title.isNotEmpty && description.isNotEmpty;
   bool get isSubmitting => status == OperationStatus.submitting;
   bool get hasFailed => status == OperationStatus.failure;
 }
