@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
+import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
+import 'package:task_manager_app/presentation/home/widget/simple_app_bar.dart';
 import 'package:task_manager_app/presentation/home/widget/task_filter_layout.dart';
 import 'package:task_manager_app/presentation/home/widget/task_list_layout.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 5,
-        title: const Text("Gestion des tâches"),
+      appBar: const SimpleAppBar(
+        title: Text("Gestion des tâches"),
       ),
       body: Stack(
         children: [
@@ -37,8 +36,13 @@ class HomePage extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: FilledButton(
                 onPressed: () {
-                  ref.read(taskListStateProvider.notifier).testAddTask();
-                    /// TODO
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const AddOrUpdateTaskPage();
+                      },
+                    ),
+                  );
                 },
                 child: const Text("Ajouter une nouvelle tâche"),
               ),
