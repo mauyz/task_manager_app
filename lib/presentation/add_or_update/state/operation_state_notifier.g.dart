@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'operation_state_notifier_provider.dart';
+part of 'operation_state_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
 String _$operationStateNotifierHash() =>
-    r'efe057c0573ef5d19d9cd35eb25dd73f959d219d';
+    r'c4180b5f0f710d5438fd0bf0fa4dd9ff2912444c';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'task_list_state.dart';
+part of 'filter_state_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$taskListStateHash() => r'9a65749867bf93aec094ba05a37f7cd48c96ea6a';
+String _$filterStateNotifierHash() =>
+    r'c9a98bde000fbadcdd2b9edf8b1318e8f338a871';
 
-/// See also [TaskListState].
-@ProviderFor(TaskListState)
-final taskListStateProvider =
-    AutoDisposeAsyncNotifierProvider<TaskListState, List<Task>>.internal(
-  TaskListState.new,
-  name: r'taskListStateProvider',
+/// See also [FilterStateNotifier].
+@ProviderFor(FilterStateNotifier)
+final filterStateNotifierProvider =
+    AutoDisposeNotifierProvider<FilterStateNotifier, FilterEnum>.internal(
+  FilterStateNotifier.new,
+  name: r'filterStateNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$taskListStateHash,
+      : _$filterStateNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$TaskListState = AutoDisposeAsyncNotifier<List<Task>>;
+typedef _$FilterStateNotifier = AutoDisposeNotifier<FilterEnum>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

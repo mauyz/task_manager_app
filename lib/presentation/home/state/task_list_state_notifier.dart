@@ -3,10 +3,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:task_manager_app/data/repository/task_repository_provider.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 
-part 'task_list_state.g.dart';
+part 'task_list_state_notifier.g.dart';
 
 @riverpod
-class TaskListState extends _$TaskListState {
+class TaskListStateNotifier extends _$TaskListStateNotifier {
   @override
   Future<List<Task>> build() {
     return _loadData();

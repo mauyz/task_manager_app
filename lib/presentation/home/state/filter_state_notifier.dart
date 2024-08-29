@@ -1,10 +1,10 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:task_manager_app/core/enum/filter_enum.dart';
 
-part 'task_filter_state.g.dart';
+part 'filter_state_notifier.g.dart';
 
 @riverpod
-class TaskFilterState extends _$TaskFilterState {
+class FilterStateNotifier extends _$FilterStateNotifier {
   @override
   FilterEnum build() => FilterEnum.all;
 

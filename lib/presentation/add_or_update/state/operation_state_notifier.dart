@@ -2,9 +2,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:task_manager_app/core/enum/operation_status.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state.dart';
-import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
+import 'package:task_manager_app/presentation/home/state/task_list_state_notifier.dart';
 
-part 'operation_state_notifier_provider.g.dart';
+part 'operation_state_notifier.g.dart';
 
 @riverpod
 class OperationStateNotifier extends _$OperationStateNotifier {
@@ -50,9 +50,9 @@ class OperationStateNotifier extends _$OperationStateNotifier {
         isCompleted: state.isCompleted,
       );
       if (task == null) {
-        await ref.read(taskListStateProvider.notifier).addTask(data);
+        await ref.read(taskListStateNotifierProvider.notifier).addTask(data);
       } else {
-        await ref.read(taskListStateProvider.notifier).updateTask(data);
+        await ref.read(taskListStateNotifierProvider.notifier).updateTask(data);
       }
       state = state.copyWith(status: OperationStatus.success);
     } catch (_) {
