@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/domain/model/task.dart';
+import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
+import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
 
 class TaskListItem extends ConsumerWidget {
   final Task task;
@@ -19,7 +21,13 @@ class TaskListItem extends ConsumerWidget {
             Radius.circular(12.0),
           ),
           onTap: () {
-            //TODO
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return AddOrUpdateTaskPage(task: task);
+                },
+              ),
+            );
           },
           child: Row(
             children: [
@@ -32,7 +40,11 @@ class TaskListItem extends ConsumerWidget {
                         : Icons.check_box_outline_blank_rounded,
                   ),
                   onPressed: () {
-                    // TODO
+                    final newValue =
+                        task.copyWith(isCompleted: !task.isCompleted);
+                    ref
+                        .read(taskListStateProvider.notifier)
+                        .updateTask(newValue);
                   },
                 ),
               ),
@@ -47,6 +59,7 @@ class TaskListItem extends ConsumerWidget {
                     ),
                     Text(
                       task.description,
+                      maxLines: 1,
                     ),
                   ],
                 ),
