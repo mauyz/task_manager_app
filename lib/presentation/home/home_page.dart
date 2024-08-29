@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.only(bottom: 5.0),
               child: FilledButton(
                 onPressed: () {
                   Navigator.of(context).push(
