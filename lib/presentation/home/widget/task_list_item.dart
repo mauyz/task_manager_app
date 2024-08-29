@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_manager_app/core/util/display_snack_bar.dart';
+import 'package:task_manager_app/presentation/util/display_snack_bar.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
 import 'package:task_manager_app/presentation/home/state/task_list_state.dart';
