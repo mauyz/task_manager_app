@@ -13,6 +13,4 @@ class DbConstants {
   static const columnTitle = "title";
   static const columnDescription = "description";
   static const columnIsCompleted = "is_completed";
-
-
 }
