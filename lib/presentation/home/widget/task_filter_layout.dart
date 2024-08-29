@@ -8,6 +8,8 @@ class TaskFilterLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      elevation: 2,
+      color: Theme.of(context).appBarTheme.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
@@ -24,15 +26,8 @@ class TaskFilterLayout extends StatelessWidget {
             const Row(
               children: [
                 TaskFilterItem(
-                  title: "Toute",
+                  title: "Toutes",
                   filter: FilterEnum.all,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                TaskFilterItem(
-                  title: "Complète",
-                  filter: FilterEnum.completed,
                 ),
                 SizedBox(
                   width: 10,
@@ -40,6 +35,13 @@ class TaskFilterLayout extends StatelessWidget {
                 TaskFilterItem(
                   title: "En cours",
                   filter: FilterEnum.uncompleted,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                TaskFilterItem(
+                  title: "Complètes",
+                  filter: FilterEnum.completed,
                 ),
               ],
             ),
