@@ -7,7 +7,7 @@ part of 'operation_state_notifier.dart';
 // **************************************************************************
 
 String _$operationStateNotifierHash() =>
-    r'c4180b5f0f710d5438fd0bf0fa4dd9ff2912444c';
+    r'e9b08a2214fa40b73032e1b4f4e0de7023d56406';
 
 /// Copied from Dart SDK
 class _SystemHash {
