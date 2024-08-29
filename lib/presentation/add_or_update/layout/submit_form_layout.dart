@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state.dart';
-import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier_provider.dart';
+import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/submit_button.dart';
 import 'package:task_manager_app/presentation/home/widget/error_text_widget.dart';
 

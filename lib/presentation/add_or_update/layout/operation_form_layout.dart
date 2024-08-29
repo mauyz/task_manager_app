@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/core/enum/operation_status.dart';
 import 'package:task_manager_app/presentation/util/display_snack_bar.dart';
 import 'package:task_manager_app/domain/model/task.dart';
-import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier_provider.dart';
+import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/description_field_form.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/field_title_widget.dart';
 import 'package:task_manager_app/presentation/add_or_update/layout/status_form_layout.dart';

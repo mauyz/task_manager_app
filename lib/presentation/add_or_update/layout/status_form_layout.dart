@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state.dart';
-import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier_provider.dart';
+import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/field_title_widget.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/status_field_form.dart';
 
