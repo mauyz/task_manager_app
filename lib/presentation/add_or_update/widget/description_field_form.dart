@@ -18,11 +18,12 @@ class DescriptionFieldForm extends StatelessWidget {
       textAlignVertical: TextAlignVertical.top,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
+        hintText: "Entrer la description",
       ),
       onChanged: onChanged,
       validator: (value) {
-        if(value == null || value.isEmpty) {
-          return "Ce champ est obligatoire";
+        if (value == null || value.isEmpty) {
+          return "La description est obligatoire";
         }
         return null;
       },

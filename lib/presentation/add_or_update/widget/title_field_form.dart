@@ -15,11 +15,12 @@ class TitleFieldForm extends StatelessWidget {
       initialValue: initialValue,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
+        hintText: "Entrer le titre",
       ),
       onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Ce champ est obligatoire";
+          return "Le titre est obligatoire";
         }
         return null;
       },
