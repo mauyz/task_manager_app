@@ -11,7 +11,7 @@ class TaskFilterLayout extends StatelessWidget {
       elevation: 2,
       color: Theme.of(context).appBarTheme.backgroundColor,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
