@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_manager_app/core/enum/form_status.dart';
+import 'package:task_manager_app/core/enum/operation_status.dart';
 import 'package:task_manager_app/domain/model/task.dart';
+import 'package:task_manager_app/presentation/add_or_update/state/operation_state.dart';
+import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier_provider.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/description_field_form.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/field_title_widget.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/status_field_form.dart';
@@ -9,7 +11,6 @@ import 'package:task_manager_app/presentation/home/widget/error_text_widget.dart
 import 'package:task_manager_app/presentation/home/widget/simple_app_bar.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/submit_button.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/title_field_form.dart';
-import 'package:task_manager_app/presentation/add_or_update/state/form_state_notifier_provider.dart';
 
 class AddOrUpdateTaskPage extends ConsumerWidget {
   final Task? task;
@@ -19,17 +20,25 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formState = ref.watch(formStateNotifierProvider(task));
-    final formStateNotifier =
-        ref.read(formStateNotifierProvider(task).notifier);
+    final operationState = ref.watch(operationStateNotifierProvider(task));
+    final operationStateNotifier =
+        ref.read(operationStateNotifierProvider(task).notifier);
     ref.listen(
-      formStateNotifierProvider(task),
+      operationStateNotifierProvider(task),
       (previous, next) {
         if (previous?.isSubmitting == true &&
-            next.status == FormStatus.success) {
-          if (context.mounted) {
-            Navigator.of(context).pop();
-          }
+            next.status == OperationStatus.success) {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                "Opération réussie",
+                textAlign: TextAlign.center,
+              ),
+              padding: EdgeInsets.all(8.0),
+            ),
+          );
         }
       },
     );
@@ -55,8 +64,8 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
                     ),
                     const FieldTitleWidget(text: "Titre :"),
                     TitleFieldForm(
-                      initialValue: formState.title,
-                      onChanged: formStateNotifier.updateTitle,
+                      initialValue: operationState.title,
+                      onChanged: operationStateNotifier.updateTitle,
                     ),
                     const SizedBox(
                       height: 20,
@@ -72,22 +81,24 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
                           ),
                           Flexible(
                             child: StatusFieldForm(
-                              selected: !formState.isCompleted,
+                              selected: !operationState.isCompleted,
                               text: "En cours",
                               onSelect: () {
-                                if (formState.isCompleted) {
-                                  formStateNotifier.updateIsCompleted(false);
+                                if (operationState.isCompleted) {
+                                  operationStateNotifier
+                                      .updateIsCompleted(false);
                                 }
                               },
                             ),
                           ),
                           Flexible(
                             child: StatusFieldForm(
-                              selected: formState.isCompleted,
+                              selected: operationState.isCompleted,
                               text: "Complète",
                               onSelect: () {
-                                if (!formState.isCompleted) {
-                                  formStateNotifier.updateIsCompleted(true);
+                                if (!operationState.isCompleted) {
+                                  operationStateNotifier
+                                      .updateIsCompleted(true);
                                 }
                               },
                             ),
@@ -100,8 +111,8 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
                     ],
                     const FieldTitleWidget(text: "Description :"),
                     DescriptionFieldForm(
-                      initialValue: formState.description,
-                      onChanged: formStateNotifier.updateDescription,
+                      initialValue: operationState.description,
+                      onChanged: operationStateNotifier.updateDescription,
                     ),
                   ],
                 ),
@@ -112,7 +123,7 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (formState.status == FormStatus.failure)
+                if (operationState.status == OperationStatus.failure)
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
                     child: ErrorTextWidget(
@@ -121,13 +132,14 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
                   ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: formState.status == FormStatus.submitting
+                  child: operationState.status == OperationStatus.submitting
                       ? const CircularProgressIndicator()
                       : SubmitButton(
                           text: task == null ? "Ajouter" : "Modifier",
-                          onSubmit: formState.isValid
+                          onSubmit: operationState.isValid &&
+                                  _isDataChanged(operationState)
                               ? () async {
-                                  await formStateNotifier.submitForm();
+                                  await operationStateNotifier.submitForm();
                                 }
                               : null,
                         ),
@@ -138,5 +150,14 @@ class AddOrUpdateTaskPage extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  bool _isDataChanged(OperationState state) {
+    if (task == null) {
+      return true;
+    }
+    return task?.title != state.title ||
+        task?.description != state.description ||
+        task?.isCompleted != state.isCompleted;
   }
 }
