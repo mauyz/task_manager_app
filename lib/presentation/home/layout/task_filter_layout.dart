@@ -10,34 +10,27 @@ class TaskFilterLayout extends StatelessWidget {
     return Material(
       elevation: 2,
       color: Theme.of(context).appBarTheme.backgroundColor,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
                 "Filtrer la liste",
-                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
-            const Row(
+            Row(
               children: [
                 TaskFilterItem(
                   title: "Toutes",
                   filter: FilterEnum.all,
                 ),
-                SizedBox(
-                  width: 10,
-                ),
                 TaskFilterItem(
                   title: "En cours",
                   filter: FilterEnum.uncompleted,
-                ),
-                SizedBox(
-                  width: 10,
                 ),
                 TaskFilterItem(
                   title: "Complètes",
