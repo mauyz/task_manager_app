@@ -10,18 +10,18 @@ class TaskListLayout extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dataAsyncValue = ref.watch(taskListStateNotifierProvider);
-    return switch (dataAsyncValue) {
-      AsyncData(:final value) => TaskListFilteredWidget(
-          data: value,
+    return dataAsyncValue.when(
+      data: (data) => TaskListFilteredWidget(
+        data: data,
+      ),
+      error: (_, __) => const Center(
+        child: ErrorTextWidget(
+          text: 'Une erreur se produit lors du chargement des données',
         ),
-      AsyncError() => const Center(
-          child: ErrorTextWidget(
-            text: 'Une erreur se produit lors du chargement des tâches',
-          ),
-        ),
-      _ => const Center(
-          child: CircularProgressIndicator(),
-        ),
-    };
+      ),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }
