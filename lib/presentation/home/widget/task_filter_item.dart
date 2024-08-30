@@ -18,22 +18,15 @@ class TaskFilterItem extends ConsumerWidget {
     final selected = filter == filterActive;
     return Flexible(
       child: TextButton(
-        style: selected
-            ? TextButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                shape: ContinuousRectangleBorder(
-                  side: BorderSide(
-                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                  ),
-                ),
-              )
-            : TextButton.styleFrom(
-                shape: ContinuousRectangleBorder(
-                  side: BorderSide(
-                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                  ),
-                ),
-              ),
+        style: TextButton.styleFrom(
+          backgroundColor:
+              selected ? Theme.of(context).colorScheme.primaryContainer : null,
+          shape: ContinuousRectangleBorder(
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+          ),
+        ),
         onPressed: () {
           if (filterActive != filter) {
             ref.read(filterStateNotifierProvider.notifier).update(filter);
