@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:task_manager_app/data/repository/task_repository_impl.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 
-import '../mock/datasource/task_datasource_mock.mocks.dart';
+import 'mock/datasource/task_datasource_mock.mocks.dart';
 
 void main() {
   final taskDatasource = MockTaskDatasource();
