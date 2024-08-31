@@ -9,10 +9,10 @@ part 'task_list_state_notifier.g.dart';
 class TaskListStateNotifier extends _$TaskListStateNotifier {
   @override
   Future<List<Task>> build() {
-    return _loadData();
+    return loadTaskList();
   }
 
-  Future<List<Task>> _loadData() async {
+  Future<List<Task>> loadTaskList() async {
     try {
       return ref.read(taskRepositoryProvider).getTaskList();
     } catch (e) {
@@ -23,8 +23,9 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
 
   Future addTask(final Task task) async {
     try {
-      await ref.read(taskRepositoryProvider).addTask(task);
-      state = AsyncData(await _loadData());
+      final previousState = await future;
+      final result = await ref.read(taskRepositoryProvider).addTask(task);
+      state = AsyncData([...previousState, result]);
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -33,8 +34,12 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
 
   Future updateTask(final Task task) async {
     try {
+      final previousState = await future;
       await ref.read(taskRepositoryProvider).updateTask(task);
-      state = AsyncData(await _loadData());
+      state = AsyncData([
+        for (final value in previousState)
+          if (value.id == task.id) task else value
+      ]);
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -43,8 +48,13 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
 
   Future deleteTask(final int taskId) async {
     try {
+      final previousState = await future;
       await ref.read(taskRepositoryProvider).deleteTask(taskId);
-      state = AsyncData(await _loadData());
+      state = AsyncData(previousState
+          .where(
+            (element) => element.id != taskId,
+          )
+          .toList());
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
