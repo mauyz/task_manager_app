@@ -8,7 +8,10 @@ part of 'task_datasource_provider.dart';
 
 String _$taskDatabaseHash() => r'396755bf8d0a41e1e6871ba20e61ead32d397175';
 
-/// See also [taskDatabase].
+/// This provider is responsible for instantiating and providing the [TaskDatasourceImpl]
+/// instance, which handles the data operations for tasks in the app.
+///
+/// Copied from [taskDatabase].
 @ProviderFor(taskDatabase)
 final taskDatabaseProvider = AutoDisposeProvider<TaskDatasource>.internal(
   taskDatabase,

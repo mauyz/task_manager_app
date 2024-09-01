@@ -9,7 +9,9 @@ part of 'filter_state_notifier.dart';
 String _$filterStateNotifierHash() =>
     r'c9a98bde000fbadcdd2b9edf8b1318e8f338a871';
 
-/// See also [FilterStateNotifier].
+/// A [Riverpod] state notifier that manages the current filter state for task lists.
+///
+/// Copied from [FilterStateNotifier].
 @ProviderFor(FilterStateNotifier)
 final filterStateNotifierProvider =
     AutoDisposeNotifierProvider<FilterStateNotifier, FilterEnum>.internal(

@@ -39,16 +39,40 @@ abstract class _$OperationStateNotifier
   );
 }
 
-/// See also [OperationStateNotifier].
+/// Manages the state for adding or updating a task.
+///
+/// [OperationStateNotifier] handles the state related to task operations, including
+/// form data and the operation's status. It provides methods to update form fields and
+/// submit the form data, which can be either for adding a new task or updating an existing one.
+///
+/// Copied from [OperationStateNotifier].
 @ProviderFor(OperationStateNotifier)
 const operationStateNotifierProvider = OperationStateNotifierFamily();
 
-/// See also [OperationStateNotifier].
+/// Manages the state for adding or updating a task.
+///
+/// [OperationStateNotifier] handles the state related to task operations, including
+/// form data and the operation's status. It provides methods to update form fields and
+/// submit the form data, which can be either for adding a new task or updating an existing one.
+///
+/// Copied from [OperationStateNotifier].
 class OperationStateNotifierFamily extends Family<OperationState> {
-  /// See also [OperationStateNotifier].
+  /// Manages the state for adding or updating a task.
+  ///
+  /// [OperationStateNotifier] handles the state related to task operations, including
+  /// form data and the operation's status. It provides methods to update form fields and
+  /// submit the form data, which can be either for adding a new task or updating an existing one.
+  ///
+  /// Copied from [OperationStateNotifier].
   const OperationStateNotifierFamily();
 
-  /// See also [OperationStateNotifier].
+  /// Manages the state for adding or updating a task.
+  ///
+  /// [OperationStateNotifier] handles the state related to task operations, including
+  /// form data and the operation's status. It provides methods to update form fields and
+  /// submit the form data, which can be either for adding a new task or updating an existing one.
+  ///
+  /// Copied from [OperationStateNotifier].
   OperationStateNotifierProvider call(
     Task? task,
   ) {
@@ -81,10 +105,22 @@ class OperationStateNotifierFamily extends Family<OperationState> {
   String? get name => r'operationStateNotifierProvider';
 }
 
-/// See also [OperationStateNotifier].
+/// Manages the state for adding or updating a task.
+///
+/// [OperationStateNotifier] handles the state related to task operations, including
+/// form data and the operation's status. It provides methods to update form fields and
+/// submit the form data, which can be either for adding a new task or updating an existing one.
+///
+/// Copied from [OperationStateNotifier].
 class OperationStateNotifierProvider extends AutoDisposeNotifierProviderImpl<
     OperationStateNotifier, OperationState> {
-  /// See also [OperationStateNotifier].
+  /// Manages the state for adding or updating a task.
+  ///
+  /// [OperationStateNotifier] handles the state related to task operations, including
+  /// form data and the operation's status. It provides methods to update form fields and
+  /// submit the form data, which can be either for adding a new task or updating an existing one.
+  ///
+  /// Copied from [OperationStateNotifier].
   OperationStateNotifierProvider(
     Task? task,
   ) : this._internal(

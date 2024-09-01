@@ -8,7 +8,9 @@ part of 'task_repository_provider.dart';
 
 String _$taskRepositoryHash() => r'999ffa0378a34cad8d6d6e0270f094fe99aa3320';
 
-/// See also [taskRepository].
+/// A Riverpod provider for the [TaskRepository] that supplies the implementation.
+///
+/// Copied from [taskRepository].
 @ProviderFor(taskRepository)
 final taskRepositoryProvider = AutoDisposeProvider<TaskRepository>.internal(
   taskRepository,

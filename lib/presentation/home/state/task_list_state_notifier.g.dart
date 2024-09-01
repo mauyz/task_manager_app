@@ -7,9 +7,11 @@ part of 'task_list_state_notifier.dart';
 // **************************************************************************
 
 String _$taskListStateNotifierHash() =>
-    r'03fe7dc745e717e497b4e8f3375973d5fcda15a5';
+    r'634767e15057f7fc926b03e9e0670dd4d4adee5d';
 
-/// See also [TaskListStateNotifier].
+/// A [Riverpod] state notifier that manages the state of the task list.
+///
+/// Copied from [TaskListStateNotifier].
 @ProviderFor(TaskListStateNotifier)
 final taskListStateNotifierProvider = AutoDisposeAsyncNotifierProvider<
     TaskListStateNotifier, List<Task>>.internal(
