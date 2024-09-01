@@ -88,6 +88,9 @@ class TaskListItem extends ConsumerWidget {
     );
   }
 
+  /// Shows a confirmation dialog to delete the task.
+  ///
+  /// Displays an [AlertDialog] asking the user to confirm the deletion of the task.
   void confirmDeletionDialog(BuildContext context, WidgetRef ref) {
     showDialog(
       context: context,
