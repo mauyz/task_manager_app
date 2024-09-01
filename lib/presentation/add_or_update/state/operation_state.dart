@@ -1,5 +1,9 @@
 import 'package:task_manager_app/core/enum/operation_status.dart';
 
+/// Represents the state of an operation related to task creation or updating.
+///
+/// [OperationState] holds information about the current status of an operation,
+/// including the form's data and the operation's status.
 class OperationState {
   final String title;
   final String description;
@@ -12,6 +16,8 @@ class OperationState {
     this.status = OperationStatus.initial,
   });
 
+  /// Creates a new [OperationState] instance with the specified changes.
+  /// Allows for immutability and updates to specific fields.
   OperationState copyWith({
     String? title,
     String? description,
