@@ -4,9 +4,13 @@ import 'package:task_manager_app/core/constant/db_constants.dart';
 import 'package:task_manager_app/data/datasource/task_datasource.dart';
 import 'package:task_manager_app/data/entity/task_entity.dart';
 
+/// Implementation of the [TaskDatasource] interface using SQLite.
 class TaskDatasourceImpl implements TaskDatasource {
   Database? _database;
 
+  /// Initializes the database by opening or creating it if it doesn't exist.
+  ///
+  /// The database is created with a table for tasks according to the constants defined in [DbConstants].
   Future<Database> _initDatabase() async {
     return openDatabase(
       join(await getDatabasesPath(), DbConstants.databaseName),
@@ -24,17 +28,26 @@ class TaskDatasourceImpl implements TaskDatasource {
     );
   }
 
+  /// Provides a database instance, initializing it if necessary.
+  ///
+  /// This ensures that the database is opened only once during the app's lifecycle.
   Future<Database> get database async {
     _database ??= await _initDatabase();
     return _database!;
   }
 
+  /// Retrieves all tasks from the database.
+  ///
+  /// Returns a [TaskListEntity] containing all tasks stored in the database.
   @override
   Future<TaskListEntity> getAllTasks() async {
     final db = await database;
     return db.query(DbConstants.tableName);
   }
 
+  /// Inserts a new task into the database and returns the inserted [TaskEntity].
+  ///
+  /// The insertion is done inside a transaction to ensure data integrity.
   @override
   Future<TaskEntity> insertTask(TaskEntity taskEntity) async {
     final db = await database;
@@ -57,6 +70,9 @@ class TaskDatasourceImpl implements TaskDatasource {
     return result;
   }
 
+  /// Updates an existing task in the database.
+  ///
+  /// The task is matched by its ID and updated with the new values from [taskEntity].
   @override
   Future<void> updateTask(TaskEntity taskEntity) async {
     final db = await database;
@@ -68,6 +84,9 @@ class TaskDatasourceImpl implements TaskDatasource {
     );
   }
 
+  /// Deletes a task from the database by its ID.
+  ///
+  /// The task is identified by [taskId] and removed from the database.
   @override
   Future<void> deleteTask(int taskId) async {
     final db = await database;
