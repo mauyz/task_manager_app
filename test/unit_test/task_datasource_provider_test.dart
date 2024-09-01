@@ -16,7 +16,7 @@ void main() {
     return container;
   }
 
-  test('taskDatabase provider should return an instance of TaskDatasource', () {
+  test('TaskDatasourceProvider should return an instance of TaskDatasource', () {
     // Create a mock instance of TaskDatasource
     final mockTaskDatasource = MockTaskDatasource();
 

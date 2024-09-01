@@ -5,7 +5,7 @@ import 'package:task_manager_app/domain/model/task.dart';
 
 void main() {
   group(
-    "#taskMapper",
+    "TaskMapper",
     () {
       final Task testModel = Task(
         id: 1,
@@ -21,7 +21,7 @@ void main() {
       };
 
       test(
-        "should return the entity",
+        "modelToEntity should return the entity",
         () {
           final result = TaskMapper.modelToEntity(testModel);
           expect(result, testEntity);
@@ -29,7 +29,7 @@ void main() {
       );
 
       test(
-        "should return the model",
+        "entityToModel should return the model",
         () {
           final result = TaskMapper.entityToModel(testEntity);
           expect(result, testModel);
@@ -37,7 +37,7 @@ void main() {
       );
 
       test(
-        "should return entity with id null",
+        "modelToNewEntity should return entity with id null",
         () {
           final result = TaskMapper.modelToNewEntity(testModel);
           expect(result['id'], isNull);

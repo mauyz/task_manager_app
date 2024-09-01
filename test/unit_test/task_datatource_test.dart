@@ -17,7 +17,7 @@ void main() {
     datasource.database = mockDatabase;
   });
 
-  group('TaskDatasourceImpl', () {
+  group('TaskDatasource', () {
     test('should return all tasks from the database', () async {
       final mockTasks = [
         {

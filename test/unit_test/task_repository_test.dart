@@ -8,7 +8,7 @@ import '../mock/datasource/task_datasource_mock.mocks.dart';
 void main() {
   final taskDatasource = MockTaskDatasource();
   final taskRepository = TaskRepositoryImpl(taskDatasource);
-  group("#getTaskList", () {
+  group("TaskRepository", () {
     setUp(
       () async {
         when(taskDatasource.getAllTasks()).thenAnswer(
@@ -30,7 +30,7 @@ void main() {
       },
     );
 
-    test("should return the entity list", () async {
+    test("getAllTasks should return the entity list", () async {
       final list = await taskRepository.getTaskList();
       expect(list.length, 2);
       expect(list.first.id, 1);
@@ -39,7 +39,7 @@ void main() {
     });
   });
 
-  group("#addTask", () {
+  group("TaskRepository", () {
     final testEntity = {
       "id": null,
       "title": "title 1",
@@ -59,7 +59,7 @@ void main() {
     });
 
     test(
-      "should return the inserted task",
+      "insertTask should return the inserted task",
       () async {
         final newTask = Task(
           id: 0,
@@ -74,7 +74,7 @@ void main() {
     );
   });
 
-  group("#updateTask", () {
+  group("TaskRepository", () {
     final testEntity = {
       "id": 1,
       "title": "new title",
@@ -89,7 +89,7 @@ void main() {
     });
 
     test(
-      "should return void",
+      "updateTask should return void",
       () async {
         await taskRepository.updateTask(
           Task(
@@ -104,7 +104,7 @@ void main() {
     );
   });
 
-  group("#deleteTask", () {
+  group("TaskRepository", () {
     setUp(() async {
       when(taskDatasource.deleteTask(1)).thenAnswer(
         (_) async => {},
@@ -112,7 +112,7 @@ void main() {
     });
 
     test(
-      "should return void",
+      "deleteTask should return void",
       () async {
         await taskRepository.deleteTask(1);
         verify(taskDatasource.deleteTask(1)).called(1);
