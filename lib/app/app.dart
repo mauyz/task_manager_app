@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/presentation/home/home_page.dart';
 
+/// The widget root of the application and sets up the basic config.
 class App extends StatelessWidget {
   const App({super.key});
 
