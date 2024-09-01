@@ -134,7 +134,7 @@ Future filterList(WidgetTester tester) async {
 
   await tester.pumpAndSettle(const Duration(seconds: 2));
 
-  /// tap on completed filter
+  /// tap on all filter
   await tester.tap(allFilter);
   await tester.pumpAndSettle(const Duration(seconds: 2));
 }
