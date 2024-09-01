@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:task_manager_app/core/enum/filter_enum.dart';
 import 'package:task_manager_app/presentation/home/widget/task_filter_item.dart';
 
+/// A widget that provides a layout for filtering the task list.
+///
+/// [TaskFilterLayout] displays a set of filter options that allow users to filter tasks based on
+/// their status.
 class TaskFilterLayout extends StatelessWidget {
   const TaskFilterLayout({super.key});
 
