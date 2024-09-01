@@ -41,6 +41,9 @@ class TaskListItem extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: IconButton(
+                  color: task.isCompleted
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
                   padding: const EdgeInsets.all(12.0),
                   icon: Icon(
                     task.isCompleted
@@ -75,6 +78,7 @@ class TaskListItem extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: IconButton(
+                  color: Theme.of(context).colorScheme.error,
                   icon: const Icon(Icons.delete),
                   onPressed: () {
                     confirmDeletionDialog(context, ref);
