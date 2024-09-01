@@ -4,6 +4,10 @@ import 'package:task_manager_app/presentation/home/widget/simple_app_bar.dart';
 import 'package:task_manager_app/presentation/home/layout/task_filter_layout.dart';
 import 'package:task_manager_app/presentation/home/layout/task_list_layout.dart';
 
+/// The home page of the application.
+///
+/// This page displays the main interface of the app, including a title bar, a filter layout,
+/// a task list, and a button to add new tasks.
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
