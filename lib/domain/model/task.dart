@@ -1,7 +1,17 @@
+/// A class representing a task with properties for managing task details.
+///
+/// The [Task] class models a task with an ID, title, description, and completion status.
 class Task {
+  /// The unique identifier for the task.
   final int id;
+
+  /// The title of the task.
   final String title;
+
+  /// A detailed description of the task.
   final String description;
+
+  /// A boolean indicating whether the task is completed.
   final bool isCompleted;
 
   Task({
@@ -20,6 +30,7 @@ class Task {
     return other is Task && other.id == id;
   }
 
+  /// Creates a copy of the current [Task] instance with optional modifications.
   Task copyWith({
     String? title,
     String? description,
