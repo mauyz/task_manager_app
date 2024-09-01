@@ -4,6 +4,11 @@ import 'package:task_manager_app/presentation/add_or_update/state/operation_stat
 import 'package:task_manager_app/presentation/add_or_update/widget/field_title_widget.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/status_field_form.dart';
 
+/// A layout for selecting the status of a task.
+///
+/// - The "En cours" status is selected if `operationState.isCompleted` is `false`.
+/// - The "Complète" status is selected if `operationState.isCompleted` is `true`.
+
 class StatusFormLayout extends StatelessWidget {
   final OperationState operationState;
   final OperationStateNotifier operationStateNotifier;

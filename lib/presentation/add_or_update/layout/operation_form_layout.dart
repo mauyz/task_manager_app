@@ -10,6 +10,12 @@ import 'package:task_manager_app/presentation/add_or_update/layout/status_form_l
 import 'package:task_manager_app/presentation/add_or_update/layout/submit_form_layout.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/title_field_form.dart';
 
+/// A form layout for adding or updating a task.
+///
+/// [OperationFormLayout] is a [ConsumerWidget] that displays a form for entering or updating
+/// task details. It uses Riverpod to manage the state and handle form submissions. The form
+/// adjusts its content based on whether a [Task] is provided for updating or not.
+
 class OperationFormLayout extends ConsumerWidget {
   final Task? task;
   const OperationFormLayout({
