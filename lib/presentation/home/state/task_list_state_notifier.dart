@@ -5,6 +5,7 @@ import 'package:task_manager_app/domain/model/task.dart';
 
 part 'task_list_state_notifier.g.dart';
 
+/// A [Riverpod] state notifier that manages the state of the task list.
 @riverpod
 class TaskListStateNotifier extends _$TaskListStateNotifier {
   @override
@@ -12,6 +13,7 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
     return loadTaskList();
   }
 
+  /// Loads the initial list of tasks from the repository.
   Future<List<Task>> loadTaskList() async {
     try {
       return ref.read(taskRepositoryProvider).getTaskList();
@@ -21,6 +23,7 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
     }
   }
 
+  /// Adds a new task to the list.
   Future addTask(final Task task) async {
     try {
       final previousState = await future;
@@ -32,6 +35,7 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
     }
   }
 
+  /// Updates an existing task in the list.
   Future updateTask(final Task task) async {
     try {
       final previousState = await future;
@@ -46,6 +50,7 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
     }
   }
 
+  /// Deletes a task from the list.
   Future deleteTask(final int taskId) async {
     try {
       final previousState = await future;
