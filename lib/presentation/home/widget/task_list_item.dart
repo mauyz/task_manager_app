@@ -6,6 +6,11 @@ import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_p
 import 'package:task_manager_app/presentation/home/state/task_list_state_notifier.dart';
 import 'package:task_manager_app/presentation/home/widget/error_text_widget.dart';
 
+/// A widget that represents a single task item in the task list.
+///
+/// [TaskListItem] displays information about a task in a card with options to mark the task
+/// as completed or delete it. Tapping on the item navigates to a page where the task can be
+/// edited or updated.
 class TaskListItem extends ConsumerWidget {
   final Task task;
   const TaskListItem({

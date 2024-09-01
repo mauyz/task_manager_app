@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A custom app bar that provides a simple configuration for the [AppBar].
 class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   const SimpleAppBar({

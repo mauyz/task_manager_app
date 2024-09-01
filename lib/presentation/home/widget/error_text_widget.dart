@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays an error message in red text.
 class ErrorTextWidget extends StatelessWidget {
   final String text;
   const ErrorTextWidget({
