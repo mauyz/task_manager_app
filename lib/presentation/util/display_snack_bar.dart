@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Displays a [SnackBar] with the given [message] in the provided [context].
 void displaySnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(
