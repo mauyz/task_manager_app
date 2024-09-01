@@ -6,7 +6,7 @@ import 'package:task_manager_app/data/entity/task_entity.dart';
 
 /// Implementation of the [TaskDatasource] interface using SQLite.
 class TaskDatasourceImpl implements TaskDatasource {
-  Database? _database;
+  Database? database;
 
   /// Initializes the database by opening or creating it if it doesn't exist.
   ///
@@ -31,9 +31,9 @@ class TaskDatasourceImpl implements TaskDatasource {
   /// Provides a database instance, initializing it if necessary.
   ///
   /// This ensures that the database is opened only once during the app's lifecycle.
-  Future<Database> get database async {
-    _database ??= await _initDatabase();
-    return _database!;
+  Future<Database> get getDatabase async {
+    database ??= await _initDatabase();
+    return database!;
   }
 
   /// Retrieves all tasks from the database.
@@ -41,7 +41,7 @@ class TaskDatasourceImpl implements TaskDatasource {
   /// Returns a [TaskListEntity] containing all tasks stored in the database.
   @override
   Future<TaskListEntity> getAllTasks() async {
-    final db = await database;
+    final db = await getDatabase;
     return db.query(DbConstants.tableName);
   }
 
@@ -50,7 +50,7 @@ class TaskDatasourceImpl implements TaskDatasource {
   /// The insertion is done inside a transaction to ensure data integrity.
   @override
   Future<TaskEntity> insertTask(TaskEntity taskEntity) async {
-    final db = await database;
+    final db = await getDatabase;
     late final TaskEntity result;
     await db.transaction(
       (txn) async {
@@ -75,7 +75,7 @@ class TaskDatasourceImpl implements TaskDatasource {
   /// The task is matched by its ID and updated with the new values from [taskEntity].
   @override
   Future<void> updateTask(TaskEntity taskEntity) async {
-    final db = await database;
+    final db = await getDatabase;
     await db.update(
       DbConstants.tableName,
       taskEntity,
@@ -89,7 +89,7 @@ class TaskDatasourceImpl implements TaskDatasource {
   /// The task is identified by [taskId] and removed from the database.
   @override
   Future<void> deleteTask(int taskId) async {
-    final db = await database;
+    final db = await getDatabase;
     await db.delete(
       DbConstants.tableName,
       where: '${DbConstants.columnId} = ?',
