@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// A form field for entering a title of a task.
+///
+/// This widget is a [TextFormField] that includes a hint text and validation to ensure
+/// that the title is not empty.
 class TitleFieldForm extends StatelessWidget {
   final String? initialValue;
   final Function(String value) onChanged;

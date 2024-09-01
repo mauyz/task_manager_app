@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a text form field for entering a task's description.
+///
+/// The [DescriptionFieldForm] widget is designed to collect a description
+/// from the user. It supports multiple lines of input and validates that
+/// the description is not empty.
 class DescriptionFieldForm extends StatelessWidget {
   final String? initialValue;
   final Function(String value) onChanged;

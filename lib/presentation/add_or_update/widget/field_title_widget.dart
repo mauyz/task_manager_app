@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a text label with a predefined style.
 class FieldTitleWidget extends StatelessWidget {
   final String text;
   const FieldTitleWidget({

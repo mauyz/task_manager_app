@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a status selection button for a task.
 class StatusFieldForm extends StatelessWidget {
   final bool selected;
   final String text;

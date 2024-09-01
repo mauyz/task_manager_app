@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A customizable submit button.
 class SubmitButton extends StatelessWidget {
   final String text;
   final Function()? onSubmit;
