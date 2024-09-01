@@ -24,6 +24,9 @@ class TaskFilterItem extends ConsumerWidget {
         style: TextButton.styleFrom(
           backgroundColor:
               selected ? Theme.of(context).colorScheme.primaryContainer : null,
+          foregroundColor: selected
+              ? null
+              : Theme.of(context).colorScheme.onSecondaryContainer,
           shape: ContinuousRectangleBorder(
             side: BorderSide(
               color: Theme.of(context).colorScheme.onSecondaryContainer,
