@@ -10,9 +10,9 @@ Dependencies :
 - [sqflite](https://pub.dev/packages/sqflite)
 - [mockito](https://pub.dev/packages/mockito)
 </br></br>
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10461181/365630127-7e5eeeb9-b9e9-4eea-919a-e1682a388543.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240909%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240909T112249Z&X-Amz-Expires=300&X-Amz-Signature=c26948a3ca65aa023a946fab5e5fa0192244e9fe262785df3ec88f06e5229d0f&X-Amz-SignedHeaders=host&actor_id=10461181&key_id=0&repo_id=848658688">
+<img src="https://github.com/user-attachments/assets/1365c4da-68f4-49c8-8dd1-a7f52602fa91">
 </br>
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/10461181/365630625-f0ee79d6-af87-480e-97c6-ee1c65c6ca8c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240909%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240909T112427Z&X-Amz-Expires=300&X-Amz-Signature=c29d17d82b14255cc0f5ec5ef9f5388641f13c376921a59192fd2cf85a8ff8de&X-Amz-SignedHeaders=host&actor_id=10461181&key_id=0&repo_id=848658688">
+<img src="https://github.com/user-attachments/assets/192089c2-8354-4c29-8003-3638745f0644">
 </br>
 
 ## Run the project
