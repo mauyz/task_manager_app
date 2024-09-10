@@ -16,16 +16,19 @@ Dependencies :
 </br>
 
 ## Run the project
-
-- $ git clone https://github.com/mauyz/task_manager_app
-- $ cd task_manager_app
-- $ flutter pub get
-- $ flutter run
+```sh
+$ git clone https://github.com/mauyz/task_manager_app
+$ cd task_manager_app
+$ flutter pub get
+$ flutter run
+```
 
 ## Run the test
 - Unit test :
-  <br>
-  $ flutter test
+```sh
+$ flutter test
+```
 - Integration test :
-  <br>
-  $ flutter test integration_test
+```sh
+$ flutter test
+```
