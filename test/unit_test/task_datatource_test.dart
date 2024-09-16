@@ -18,7 +18,7 @@ void main() {
   });
 
   group('TaskDatasource', () {
-    test('should return all tasks from the database', () async {
+    test('should return all tasks from the database', () {
       final mockTasks = [
         {
           'id': 1,
@@ -36,17 +36,19 @@ void main() {
 
       // Set up the mock database response
       when(mockDatabase.query(DbConstants.tableName))
-          .thenAnswer((_) async => mockTasks);
+          .thenAnswer((_) => Future.value(mockTasks));
 
-      final tasks = await datasource.getAllTasks();
-
-      // Verify and expect results
-      expect(tasks, isNotEmpty);
-      expect(tasks.length, 2);
-      expect(tasks[0]['title'], 'Task 1');
+      datasource.getAllTasks().then(
+        (tasks) {
+          // Verify and expect results
+          expect(tasks, isNotEmpty);
+          expect(tasks.length, 2);
+          expect(tasks[0]['title'], 'Task 1');
+        },
+      );
     });
 
-    test('should insert a task and return it with id', () async {
+    test('should insert a task and return it with id', () {
       final taskEntity = {
         'id': null,
         'title': 'Task 1',
@@ -56,34 +58,36 @@ void main() {
 
       // Mock the transaction method
       final mockTransaction = MockTransaction();
-      when(mockDatabase.transaction(any)).thenAnswer((invocation) async {
+      when(mockDatabase.transaction(any)).thenAnswer((invocation) {
         final callback = invocation.positionalArguments[0] as Future<void>
             Function(Transaction);
-        await callback(mockTransaction);
+        return callback(mockTransaction);
       });
 
       when(mockTransaction.insert(
         DbConstants.tableName,
         taskEntity,
         conflictAlgorithm: ConflictAlgorithm.replace,
-      )).thenAnswer((_) async => 1);
+      )).thenAnswer((_) => Future.value(1));
 
       // Set up the mock database response
       when(mockTransaction.query(
         DbConstants.tableName,
         where: '${DbConstants.columnId} = ?',
         whereArgs: [1],
-      )).thenAnswer((_) async => [taskEntity..['id'] = 1]);
+      )).thenAnswer((_) => Future.value([taskEntity..['id'] = 1]));
 
-      final result = await datasource.insertTask(taskEntity);
-
-      // Verify and expect results
-      expect(result, isNotNull);
-      expect(result['id'], 1);
-      expect(result['title'], 'Task 1');
+      datasource.insertTask(taskEntity).then(
+        (result) {
+          // Verify and expect results
+          expect(result, isNotNull);
+          expect(result['id'], 1);
+          expect(result['title'], 'Task 1');
+        },
+      );
     });
 
-    test('should update a task', () async {
+    test('should update a task', () {
       final taskEntity = {
         'id': 1,
         'title': 'New title',
@@ -97,21 +101,23 @@ void main() {
         taskEntity,
         where: '${DbConstants.columnId} = ?',
         whereArgs: [taskEntity['id']],
-      )).thenAnswer((_) async => 1);
+      )).thenAnswer((_) => Future.value(1));
 
       // Call the method
-      await datasource.updateTask(taskEntity);
-
-      // Verify if update method was called with correct arguments
-      verify(mockDatabase.update(
-        DbConstants.tableName,
-        taskEntity,
-        where: '${DbConstants.columnId} = ?',
-        whereArgs: [taskEntity['id']],
-      )).called(1);
+      datasource.updateTask(taskEntity).then(
+        (value) {
+          // Verify if update method was called with correct arguments
+          verify(mockDatabase.update(
+            DbConstants.tableName,
+            taskEntity,
+            where: '${DbConstants.columnId} = ?',
+            whereArgs: [taskEntity['id']],
+          )).called(1);
+        },
+      );
     });
 
-    test('should delete a task by ID', () async {
+    test('should delete a task by ID', () {
       const taskId = 1;
 
       // Set up the mock database response
@@ -119,16 +125,18 @@ void main() {
         DbConstants.tableName,
         where: '${DbConstants.columnId} = ?',
         whereArgs: [taskId],
-      )).thenAnswer((_) async => 1);
+      )).thenAnswer((_) => Future.value(1));
 
-      await datasource.deleteTask(taskId);
-
-      // Verify if delete method was called with correct arguments
-      verify(mockDatabase.delete(
-        DbConstants.tableName,
-        where: '${DbConstants.columnId} = ?',
-        whereArgs: [taskId],
-      )).called(1);
+      datasource.deleteTask(taskId).then(
+        (value) {
+          // Verify if delete method was called with correct arguments
+          verify(mockDatabase.delete(
+            DbConstants.tableName,
+            where: '${DbConstants.columnId} = ?',
+            whereArgs: [taskId],
+          )).called(1);
+        },
+      );
     });
   });
 }

@@ -11,11 +11,13 @@ class TaskDatasourceImpl implements TaskDatasource {
   /// Initializes the database by opening or creating it if it doesn't exist.
   ///
   /// The database is created with a table for tasks according to the constants defined in [DbConstants].
-  Future<Database> _initDatabase() async {
-    return openDatabase(
-      join(await getDatabasesPath(), DbConstants.databaseName),
-      onCreate: (db, version) {
-        db.execute('''
+  Future<Database> _initDatabase() {
+    return getDatabasesPath().then(
+      (dbPath) {
+        return openDatabase(
+          join(dbPath, DbConstants.databaseName),
+          onCreate: (db, version) {
+            db.execute('''
           CREATE TABLE ${DbConstants.tableName}(
             ${DbConstants.columnId} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             ${DbConstants.columnTitle} TEXT NOT NULL,
@@ -23,64 +25,75 @@ class TaskDatasourceImpl implements TaskDatasource {
             ${DbConstants.columnIsCompleted} INTEGER NOT NULL
           )
         ''');
+          },
+          version: DbConstants.databaseVersion,
+        );
       },
-      version: DbConstants.databaseVersion,
     );
   }
 
   /// Provides a database instance, initializing it if necessary.
   ///
   /// This ensures that the database is opened only once during the app's lifecycle.
-  Future<Database> get getDatabase async {
-    database ??= await _initDatabase();
-    return database!;
+  Future<Database> get getDatabase {
+    if (database != null) {
+      return Future.value(database);
+    }
+    return _initDatabase().then((db) {
+      database = db;
+      return db;
+    });
   }
 
   /// Retrieves all tasks from the database.
   ///
   /// Returns a [TaskListEntity] containing all tasks stored in the database.
   @override
-  Future<TaskListEntity> getAllTasks() async {
-    final db = await getDatabase;
-    return db.query(DbConstants.tableName);
+  Future<TaskListEntity> getAllTasks() {
+    return getDatabase.then((db) => db.query(DbConstants.tableName));
   }
 
   /// Inserts a new task into the database and returns the inserted [TaskEntity].
   ///
   /// The insertion is done inside a transaction to ensure data integrity.
   @override
-  Future<TaskEntity> insertTask(TaskEntity taskEntity) async {
-    final db = await getDatabase;
-    late final TaskEntity result;
-    await db.transaction(
-      (txn) async {
-        final id = await txn.insert(
-          DbConstants.tableName,
-          taskEntity,
-          conflictAlgorithm: ConflictAlgorithm.replace,
-        );
-        final resultsQuery = await txn.query(
-          DbConstants.tableName,
-          where: '${DbConstants.columnId} = ?',
-          whereArgs: [id],
-        );
-        result = resultsQuery.first;
-      },
+  Future<TaskEntity> insertTask(TaskEntity taskEntity) {
+    return getDatabase.then(
+      (db) => db.transaction(
+        (txn) => txn
+            .insert(
+              DbConstants.tableName,
+              taskEntity,
+              conflictAlgorithm: ConflictAlgorithm.replace,
+            )
+            .then(
+              (id) => txn.query(
+                DbConstants.tableName,
+                where: '${DbConstants.columnId} = ?',
+                whereArgs: [id],
+              ),
+            )
+            .then(
+              (resultsQuery) => resultsQuery.first,
+            ),
+      ),
     );
-    return result;
   }
 
   /// Updates an existing task in the database.
   ///
   /// The task is matched by its ID and updated with the new values from [taskEntity].
   @override
-  Future<void> updateTask(TaskEntity taskEntity) async {
-    final db = await getDatabase;
-    await db.update(
-      DbConstants.tableName,
-      taskEntity,
-      where: '${DbConstants.columnId} = ?',
-      whereArgs: [taskEntity["id"]],
+  Future<void> updateTask(TaskEntity taskEntity) {
+    return getDatabase.then(
+      (db) {
+        db.update(
+          DbConstants.tableName,
+          taskEntity,
+          where: '${DbConstants.columnId} = ?',
+          whereArgs: [taskEntity["id"]],
+        );
+      },
     );
   }
 
@@ -88,12 +101,15 @@ class TaskDatasourceImpl implements TaskDatasource {
   ///
   /// The task is identified by [taskId] and removed from the database.
   @override
-  Future<void> deleteTask(int taskId) async {
-    final db = await getDatabase;
-    await db.delete(
-      DbConstants.tableName,
-      where: '${DbConstants.columnId} = ?',
-      whereArgs: [taskId],
+  Future deleteTask(int taskId) {
+    return getDatabase.then(
+      (db) {
+        db.delete(
+          DbConstants.tableName,
+          where: '${DbConstants.columnId} = ?',
+          whereArgs: [taskId],
+        );
+      },
     );
   }
 }
