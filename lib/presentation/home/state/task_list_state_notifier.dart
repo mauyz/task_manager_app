@@ -14,13 +14,8 @@ class TaskListStateNotifier extends _$TaskListStateNotifier {
   }
 
   /// Loads the initial list of tasks from the repository.
-  Future<List<Task>> loadTaskList() async {
-    try {
-      return ref.read(taskRepositoryProvider).getTaskList();
-    } catch (e) {
-      debugPrint(e.toString());
-      rethrow;
-    }
+  Future<List<Task>> loadTaskList()  {
+    return ref.read(taskRepositoryProvider).getTaskList();
   }
 
   /// Adds a new task to the list.

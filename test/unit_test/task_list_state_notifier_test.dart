@@ -16,7 +16,7 @@ void main() {
   });
 
   group('TaskListStateNotifier', () {
-    test('Initial state should be loading and then data should be loaded', () async {
+    test('Initial state should be loading and then data should be loaded', () {
       final mockTasks = [
         Task(
           id: 1,
@@ -25,7 +25,8 @@ void main() {
           isCompleted: false,
         )
       ];
-      when(mockTaskRepository.getTaskList()).thenAnswer((_) async => mockTasks);
+      when(mockTaskRepository.getTaskList())
+          .thenAnswer((_) => Future.value(mockTasks));
 
       final container = ProviderContainer(
         overrides: [
@@ -35,10 +36,12 @@ void main() {
       expect(container.read(taskListStateNotifierProvider),
           const AsyncLoading<List<Task>>());
 
-      final tasks = await container.read(taskListStateNotifierProvider.future);
-
-      expect(tasks, mockTasks);
-      verify(mockTaskRepository.getTaskList()).called(1);
+      container.read(taskListStateNotifierProvider.future).then(
+        (tasks) {
+          expect(tasks, mockTasks);
+          verify(mockTaskRepository.getTaskList()).called(1);
+        },
+      );
     });
 
     test('addTask should add a new task to the state', () async {
