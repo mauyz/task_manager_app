@@ -6,7 +6,7 @@ part of 'task_datasource_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$taskDatabaseHash() => r'396755bf8d0a41e1e6871ba20e61ead32d397175';
+String _$taskDatabaseHash() => r'7013f34080a9332b4c90206399577a1e8ed9d03b';
 
 /// This provider is responsible for instantiating and providing the [TaskDatasourceImpl]
 /// instance, which handles the data operations for tasks in the app.
@@ -22,6 +22,8 @@ final taskDatabaseProvider = AutoDisposeProvider<TaskDatasource>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef TaskDatabaseRef = AutoDisposeProviderRef<TaskDatasource>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
