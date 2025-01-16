@@ -30,5 +30,5 @@ $ flutter test
 ```
 - Integration test :
 ```sh
-$ flutter test
+$ flutter test integration_test
 ```
