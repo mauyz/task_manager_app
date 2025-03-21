@@ -106,7 +106,7 @@ class TaskListItem extends ConsumerWidget {
           content: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ErrorTextWidget(
-              text: 'S.of(context).taskDeletionConfirm ${task.title} ?',
+              text: '${S.of(context).taskDeletionConfirm} ${task.title} ?',
             ),
           ),
           actions: [
