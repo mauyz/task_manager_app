@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 import 'package:task_manager_app/presentation/util/display_snack_bar.dart';
 import 'package:task_manager_app/domain/model/task.dart';
 import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
@@ -105,7 +106,7 @@ class TaskListItem extends ConsumerWidget {
           content: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ErrorTextWidget(
-              text: "Voulez-vous supprimer la tâche '${task.title}' ?",
+              text: 'S.of(context).taskDeletionConfirm ${task.title} ?',
             ),
           ),
           actions: [
@@ -117,25 +118,25 @@ class TaskListItem extends ConsumerWidget {
                     .then(
                   (_) {
                     if (context.mounted) {
-                      displaySnackBar(context, "Tâche supprimée");
+                      displaySnackBar(context, S.of(context).taskDeleted);
                       Navigator.of(context).pop();
                     }
                   },
                   onError: (_) {
                     if (context.mounted) {
-                      displaySnackBar(context, "Une erreur s'est produite");
+                      displaySnackBar(context, S.of(context).errorOccurred);
                       Navigator.of(context).pop();
                     }
                   },
                 );
               },
-              child: const Text("Oui"),
+              child: Text(S.of(context).yesText),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text("Non"),
+              child: Text(S.of(context).noText),
             ),
           ],
         );

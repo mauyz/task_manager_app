@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 import 'package:task_manager_app/presentation/add_or_update/add_or_update_task_page.dart';
 import 'package:task_manager_app/presentation/home/widget/simple_app_bar.dart';
 import 'package:task_manager_app/presentation/home/layout/task_filter_layout.dart';
@@ -14,8 +15,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SimpleAppBar(
-        title: Text("Gestion des tâches"),
+      appBar: SimpleAppBar(
+        title: Text(S.current.appTitle),
       ),
       body: Stack(
         children: [
@@ -47,7 +48,7 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text("Ajouter une nouvelle tâche"),
+                child: Text(S.current.addTask),
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 
 /// A widget that displays a text form field for entering a task's description.
 ///
@@ -21,14 +22,14 @@ class DescriptionFieldForm extends StatelessWidget {
       minLines: 10,
       maxLines: 100,
       textAlignVertical: TextAlignVertical.top,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         border: OutlineInputBorder(),
-        hintText: "Entrer la description",
+        hintText: S.of(context).enterTheDescription,
       ),
       onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "La description est obligatoire";
+          return S.of(context).descRequired;
         }
         return null;
       },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager_app/core/enum/filter_enum.dart';
 import 'package:task_manager_app/domain/model/task.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 import 'package:task_manager_app/presentation/home/state/filter_state_notifier.dart';
 import 'package:task_manager_app/presentation/home/widget/task_list_item.dart';
 
@@ -36,15 +37,15 @@ class TaskListFilteredWidget extends ConsumerWidget {
     // Sets the text suffix based on the current filter.
     final filterText = switch (filter) {
       FilterEnum.all => "",
-      FilterEnum.completed => " complète",
-      FilterEnum.uncompleted => " incomplète",
+      FilterEnum.completed => " ${S.current.completed}".toLowerCase(),
+      FilterEnum.uncompleted => " ${S.current.inProgress}".toLowerCase(),
     };
 
     // Displays a message if no tasks match the filter criteria, otherwise shows a list of tasks.
     return filteredList.isEmpty
         ? Center(
             child: Text(
-              "Aucune tâche$filterText",
+              '${S.current.noTask}$filterText',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           )

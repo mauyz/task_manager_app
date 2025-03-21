@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state.dart';
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/field_title_widget.dart';
@@ -22,16 +23,16 @@ class StatusFormLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(right: 8.0),
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
           child: FieldTitleWidget(
-            text: "Status:",
+            text: S.current.status,
           ),
         ),
         Flexible(
           child: StatusFieldForm(
             selected: !operationState.isCompleted,
-            text: "En cours",
+            text: S.current.inProgress,
             onSelect: () {
               if (operationState.isCompleted) {
                 operationStateNotifier.updateIsCompleted(false);
@@ -42,7 +43,7 @@ class StatusFormLayout extends StatelessWidget {
         Flexible(
           child: StatusFieldForm(
             selected: operationState.isCompleted,
-            text: "Complète",
+            text: S.current.completed,
             onSelect: () {
               if (!operationState.isCompleted) {
                 operationStateNotifier.updateIsCompleted(true);

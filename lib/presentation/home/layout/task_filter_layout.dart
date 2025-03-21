@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/core/enum/filter_enum.dart';
 import 'package:task_manager_app/presentation/home/widget/task_filter_item.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 
 /// A widget that provides a layout for filtering the task list.
 ///
@@ -14,30 +15,30 @@ class TaskFilterLayout extends StatelessWidget {
     return Material(
       elevation: 2,
       color: Theme.of(context).appBarTheme.backgroundColor,
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                "Filtrer la liste",
+                S.current.filterTaskList,
               ),
             ),
             Row(
               children: [
                 TaskFilterItem(
-                  title: "Toutes",
+                  title: S.of(context).all,
                   filter: FilterEnum.all,
                 ),
                 TaskFilterItem(
-                  title: "En cours",
+                  title: S.of(context).inProgress,
                   filter: FilterEnum.uncompleted,
                 ),
                 TaskFilterItem(
-                  title: "Complètes",
+                  title: S.of(context).completed,
                   filter: FilterEnum.completed,
                 ),
               ],

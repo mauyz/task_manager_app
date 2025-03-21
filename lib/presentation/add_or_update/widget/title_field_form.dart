@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 
 /// A form field for entering a title of a task.
 ///
@@ -17,14 +18,14 @@ class TitleFieldForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: initialValue,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         border: OutlineInputBorder(),
-        hintText: "Entrer le titre",
+        hintText: S.of(context).enterTheTitle,
       ),
       onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Le titre est obligatoire";
+          return S.of(context).titleRequired;
         }
         return null;
       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/domain/model/task.dart';
+import 'package:task_manager_app/generated/l10n.dart' show S;
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state.dart';
 import 'package:task_manager_app/presentation/add_or_update/state/operation_state_notifier.dart';
 import 'package:task_manager_app/presentation/add_or_update/widget/submit_button.dart';
@@ -28,10 +29,10 @@ class SubmitFormLayout extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (operationState.hasFailed)
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0),
             child: ErrorTextWidget(
-              text: "Une erreur s'est produite pendant l'opération",
+              text: S.current.errorOccurred,
             ),
           ),
         Padding(
@@ -39,7 +40,7 @@ class SubmitFormLayout extends StatelessWidget {
           child: operationState.isSubmitting
               ? const CircularProgressIndicator()
               : SubmitButton(
-                  text: task == null ? "Ajouter" : "Modifier",
+                  text: task == null ? S.of(context).add : S.of(context).update,
                   onSubmit: _isSubmissionValid(operationState)
                       ? () async {
                           await operationStateNotifier.submitData();
